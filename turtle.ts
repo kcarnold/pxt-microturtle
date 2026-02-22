@@ -2,7 +2,9 @@ enum TurtlePenMode {
     //% block="down"
     Down,
     //% block="up"
-    Up
+    Up,
+    //% block="erase"
+    Erase,
 }
 /**
  * Turtle graphics blocks
@@ -63,6 +65,8 @@ namespace turtle {
             // paint if pen down
             if (_penMode == TurtlePenMode.Down)
                 _img.setPixelBrightness(_x, _y, _brightness);
+            if (_penMode == TurtlePenMode.Erase)
+                _img.setPixelBrightness(_x, _y, 0);
             // paint and update
             setPosition(_x + dx, _y + dy);
         }
@@ -166,7 +170,7 @@ namespace turtle {
 
         _delay = Math.max(1, Math.min(50, Math.idiv(1000, stepsPerSecond)));
     }
-
+    
     // auto-initialize
     init()
     paint()
